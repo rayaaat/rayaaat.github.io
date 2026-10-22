@@ -2,147 +2,200 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kishwar Rayat</title>
-<meta name="description" content="Kishwar Rayat — cybersecurity student, self-taught developer and photographer based in Savannah, GA.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<meta name="description" content="Cyber forensics student in Savannah. I write about what I'm learning and building.">
 <style>
-:root{
-  --bg:#0b0d10; --panel:#12161b; --line:#232a33; --text:#e8edf2; --muted:#93a0ad;
-  --accent:#4ade80; --accent2:#38bdf8;
+/* Clean, quiet, lots of white space. Sans-serif like most polished personal blogs. */
+:root {
+  --bg: #ffffff;
+  --text: #1d1d1f;
+  --muted: #86868b;
+  --line: #ececee;
+  --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
 }
-@media (prefers-color-scheme: light){
-  :root{--bg:#f7f8fa; --panel:#ffffff; --line:#e3e7ec; --text:#0f1720; --muted:#5b6673; --accent:#16a34a; --accent2:#0284c7;}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0f10;
+    --text: #f2f2f4;
+    --muted: #8e8e93;
+    --line: #232326;
+    color-scheme: dark;
+  }
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6}
-a{color:inherit}
-.wrap{max-width:960px;margin:0 auto;padding:0 20px}
-nav{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
-.logo{font-family:"JetBrains Mono",monospace;font-weight:500;text-decoration:none}
-.logo span{color:var(--accent)}
-nav ul{display:flex;gap:22px;list-style:none}
-nav ul a{text-decoration:none;color:var(--muted);font-size:.92rem}
-nav ul a:hover{color:var(--text)}
-header{padding:110px 0 90px}
-.tag{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:.9rem;margin-bottom:18px}
-h1{font-size:clamp(2.4rem,7vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-.03em}
-h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{color:var(--muted);font-size:1.15rem;max-width:620px;margin-top:22px}
-.btns{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
-.btn{padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:500;border:1px solid var(--line)}
-.btn.primary{background:var(--accent);color:#06210f;border-color:var(--accent)}
-.btn:hover{transform:translateY(-1px)}
-section{padding:70px 0;border-top:1px solid var(--line)}
-h2{font-size:1.7rem;letter-spacing:-.02em;margin-bottom:8px}
-.sub{color:var(--muted);margin-bottom:32px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
-.card h3{font-size:1.05rem;margin-bottom:6px}
-.card p{color:var(--muted);font-size:.95rem}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-family:"JetBrains Mono",monospace;font-size:.85rem;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
-.timeline{display:grid;gap:14px}
-.timeline .card{display:flex;gap:16px;align-items:baseline}
-.timeline .yr{font-family:"JetBrains Mono",monospace;color:var(--accent);min-width:70px;font-size:.9rem}
-footer{padding:40px 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
-@media (max-width:600px){nav ul{gap:14px} nav ul li:nth-child(n+4){display:none} header{padding:70px 0 60px}}
+:root[data-theme="dark"] {
+  --bg: #0f0f10;
+  --text: #f2f2f4;
+  --muted: #8e8e93;
+  --line: #232326;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+.wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-block: 72px 80px;
+}
+
+a { color: var(--text); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Header */
+.site-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.site-name {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.site-name:hover { text-decoration: none; }
+
+.theme-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.theme-btn:hover, .theme-btn:focus-visible { color: var(--text); }
+
+.intro { color: var(--muted); margin: 0 0 64px; font-size: 18px; }
+
+/* Sections */
+section { margin-bottom: 56px; }
+h2 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+ul.plain { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+ul.plain li { margin: 0; }
+
+.projects a { font-weight: 600; }
+.projects span { display: block; color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+/* Post list */
+.posts { gap: 0 !important; }
+.posts li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.posts li:last-child { border-bottom: 1px solid var(--line); }
+.posts a { font-weight: 600; font-size: 18px; }
+.posts time { color: var(--muted); font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Single post */
+.post h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 24px 0 8px;
+  text-wrap: balance;
+}
+.post .date { color: var(--muted); font-size: 14px; margin: 0 0 40px; }
+.post p { margin: 0 0 1.3em; }
+.post a { text-decoration: underline; text-underline-offset: 3px; }
+.post img { max-width: 100%; height: auto; border-radius: 4px; }
+.post blockquote {
+  margin: 28px 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--line);
+  color: var(--muted);
+}
+
+.back { margin-top: 56px; font-size: 15px; }
+.back a { color: var(--muted); }
+
+/* Footer */
+.site-foot {
+  margin-top: 80px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.site-foot a { color: var(--muted); }
+.site-foot a:hover { color: var(--text); }
+
+@media (max-width: 480px) {
+  .wrap { padding-block: 48px 64px; }
+  .site-name, .post h1 { font-size: 28px; }
+  .intro { margin-bottom: 48px; }
+  .posts li { flex-direction: column; gap: 2px; }
+}
 </style>
 </head>
 <body>
-
-<nav>
-  <div class="wrap">
-    <a class="logo" href="#">kishwar<span>.rayat</span></a>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
+<main class="wrap">
+  <header class="site-head">
+    <a class="site-name" href="#">Kishwar Rayat</a>
+    <button class="theme-btn" id="theme-btn" type="button">Dark</button>
+  </header>
+  <p class="intro">Cyber forensics student in Savannah. I write about what I'm learning and building.</p>
+  <section>
+    <h2>Now</h2>
+    <ul class="plain">
+      <li>Studying cyber forensics at Savannah Technical College</li>
+      <li>Building exhaleus</li>
+      <li>Working at Whole Foods and CAVA</li>
     </ul>
-  </div>
-</nav>
-
-<header>
-  <div class="wrap">
-    <p class="tag">&gt; hello, world</p>
-    <h1>I'm Kishwar Rayat.<br><span class="grad">Building toward big things.</span></h1>
-    <p class="lead">Cybersecurity student in Savannah, Georgia. Self-taught developer and photographer, learning math, physics and computer science with one goal: build technology that makes people's lives better.</p>
-    <div class="btns">
-      <a class="btn primary" href="#work">See my work</a>
-      <a class="btn" href="#contact">Get in touch</a>
-    </div>
-  </div>
-</header>
-
-<section id="about">
-  <div class="wrap">
-    <h2>About</h2>
-    <p class="sub">From Sylhet, Bangladesh to Savannah, Georgia.</p>
-    <div class="grid">
-      <div class="card"><h3>🎓 Student</h3><p>Studying cybersecurity at Savannah Technical College, aiming to transfer to Georgia Tech.</p></div>
-      <div class="card"><h3>💻 Builder</h3><p>Taught myself web development and Python. I learn by building real projects.</p></div>
-      <div class="card"><h3>📷 Creator</h3><p>Photographer and content creator, shooting on a Fujifilm X-M5.</p></div>
-      <div class="card"><h3>🚀 Long game</h3><p>Interested in startups, ML, robotics and science that has real impact.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <h2>Skills</h2>
-    <p class="sub">What I work with right now, and what I'm learning next.</p>
-    <div class="chips">
-      <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
-      <span class="chip">React</span><span class="chip">Python</span><span class="chip">WordPress</span>
-      <span class="chip">Git &amp; GitHub</span><span class="chip">Cybersecurity basics</span>
-      <span class="chip">Photography</span><span class="chip">Learning: ML &amp; data science</span>
-    </div>
-  </div>
-</section>
-
-<section id="work">
-  <div class="wrap">
-    <h2>Work &amp; projects</h2>
-    <p class="sub">Things I've built and what I'm working on now.</p>
-    <div class="grid">
-      <div class="card"><h3>This website</h3><p>Hand-coded in HTML and CSS and hosted on GitHub Pages.</p></div>
-      <div class="card"><h3>2FA / Authenticator deep-dive</h3><p>A learning project that breaks down how TOTP authenticator apps work, step by step.</p></div>
-      <div class="card"><h3>Photography</h3><p>Street and portrait work around Savannah. Gallery coming soon.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="journey">
-  <div class="wrap">
-    <h2>Journey</h2>
-    <p class="sub">Short version.</p>
-    <div class="timeline">
-      <div class="card"><span class="yr">12 yrs</span><p>Military school, where I learned discipline and consistency.</p></div>
-      <div class="card"><span class="yr">2025</span><p>Moved from Sylhet, Bangladesh to Savannah, Georgia.</p></div>
-      <div class="card"><span class="yr">2026</span><p>Started cybersecurity at Savannah Tech and began building in public.</p></div>
-      <div class="card"><span class="yr">Next</span><p>Georgia Tech, then building something big.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <h2>Contact</h2>
-    <p class="sub">Open to connecting with builders, founders and anyone working on interesting problems.</p>
-    <div class="btns">
-      <a class="btn primary" href="mailto:rayatsay@gmail.com">Email me</a>
-      <a class="btn" href="https://github.com/rayaaat">GitHub</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">© <span id="y"></span> Kishwar Rayat · Built by hand, hosted on GitHub Pages.</div>
-</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+  </section>
+  <section>
+    <h2>Projects</h2>
+    <ul class="plain projects">
+      <li><a href="#">exhaleus</a><span>A space organized by how you feel. You say the true thing, a real person replies.</span></li>
+      <li><a href="#">Savannah community site</a><span>A local site for the Savannah community.</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>Writing</h2>
+    <ul class="plain posts">
+      <li><a href="#">Starting this blog</a><time>Oct 22, 2026</time></li>
+    </ul>
+  </section>
+  <footer class="site-foot">
+    <a href="https://www.linkedin.com/in/kishwar-rayat-362829369/">LinkedIn</a>
+    <a href="https://github.com/7rayat">GitHub</a>
+  </footer>
+</main>
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById("theme-btn");
+  function isDark() { var t = root.getAttribute("data-theme"); return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches; }
+  function label() { btn.textContent = isDark() ? "Light" : "Dark"; }
+  label();
+  btn.addEventListener("click", function () { root.setAttribute("data-theme", isDark() ? "light" : "dark"); label(); });
+})();
+</script>
 </body>
 </html>
